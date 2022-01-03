@@ -1,4 +1,20 @@
-1. Pull inmage for ETCD-backup cronjob
+1. Pull image for ETCD-backup cronjob
 ```
-pudman pull quay.io/openshift-release-dev/ocp-release:4.8.23-x86_64 --auth-file downloads/pull-secret.txt 
+podman pull registry.redhat.io/openshift4/ose-cli:latest --authfile /opt/registry/configs/<pull-combined.json>
+```
+2. tag the image
+```
+podman tag registry.redhat.io/openshift4/ose-cli:latest mirrorregistry:5000/ocp4/openshift4/ose-cli:v4.9.0
+```
+3. Check the image
+```
+podman images
+```
+4. Push the image to local registry
+```
+podman push mirrorregistry:5000/ocp4/openshift4/ose-cli:v4.9.0 --authfile /opt/registry/configs/<pull-combined.json>
+```
+5. Check the registry (sometimes need to use 'podman stop' and 'podman start' to restart)
+```
+podman ps
 ```
