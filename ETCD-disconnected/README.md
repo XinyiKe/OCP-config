@@ -1,8 +1,7 @@
 ETCD-backup cronjob
 ====
 
-#Step1
-
+Step1
 1. Pull image for ETCD-backup cronjob
 ```
 podman pull registry.redhat.io/openshift4/ose-cli:latest --authfile /opt/registry/configs/<pull-combined.json>
@@ -23,3 +22,11 @@ podman push mirrorregistry:5000/ocp4/openshift4/ose-cli:v4.9.0 --authfile /opt/r
 ```
 podman ps
 ```
+#
+
+Step2
+1. Create new project
+```
+oc apply -f 00-namespace.yml
+```
+#
