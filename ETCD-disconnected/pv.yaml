@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-etcd-backup
+spec:
+  capacity:
+    storage: 50Gi 
+  accessModes:
+  - ReadWriteMany 
+  nfs: 
+    path: /data/nfsshare/etcd-backup
+    server: 1.1.1.1
+  persistentVolumeReclaimPolicy: Retain
