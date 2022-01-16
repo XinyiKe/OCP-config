@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-registry-storage
+spec:
+  capacity:
+    storage: 200Gi 
+  accessModes:
+  - ReadWriteOnce
+  nfs: 
+    path: /data/nfsshare/registry-storage
+    server: 1.1.1.1
+  persistentVolumeReclaimPolicy: Retain
