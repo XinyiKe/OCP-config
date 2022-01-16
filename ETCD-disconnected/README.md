@@ -48,3 +48,12 @@ oc get pvc -n etcd-backup
 oc create -f cronjob.yaml -n etcd-backup
 ```
 #
+
+Test 
+====
+Create a job in etcd-backup namespace to test
+```
+oc create job --from=cronjob/etcd-backup test-job
+
+oc logs -l job-name=test-job -n etcd-backup
+```
