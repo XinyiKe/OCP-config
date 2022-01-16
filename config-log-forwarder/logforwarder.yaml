@@ -1,0 +1,38 @@
+apiVersion: "logging.openshift.io/v1"
+kind: ClusterLogForwarder
+metadata:
+  name: instance
+  namespace: openshift-logging
+spec:
+  outputs:
+   - name: elasticsearch
+     type: "elasticsearch"
+     url: https://xxx.com:9200
+     secret:
+        name: es-secret #https require secret, if using http, you may can remove secret
+  pipelines:
+   - name: application-logs
+     inputRefs:
+     - application
+     outputRefs:
+     - elasticsearch
+     - default
+     parse: json
+     labels:
+       logs: "ps1ocp-app"
+   - name: infrastructure-logs
+     inputRefs:
+     - infrastructure
+     outputRefs:
+     - elasticsearch
+     - default
+     labels:
+       logs: "ps1ocp4-infra"
+   - name: infrastructure-audit-logs
+     inputRefs:
+     - audit
+     outputRefs:
+     - default
+     - elasticsearch
+     labels:
+       logs: "ps1ocp4-audit"
