@@ -27,9 +27,24 @@ podman ps
 Step2
 1. Create new project
 ```
-oc apply -f 00-namespace.yml
+oc new-project etcd-backup
 ```
 2. Create RBAC role
+```
+oc create -f rbac.yaml
+```
 3. Create PV and PVC to store backup files
+```
+oc apply -f pv.yaml
+
+oc get pv 
+
+oc apply -f pvc.yaml -n etcd-backup
+
+oc get pvc -n etcd-backup
+```
 4. Create the cronjob
+```
+oc create -f cronjob.yaml -n etcd-backup
+```
 #
