@@ -29,4 +29,7 @@ Step2
 ```
 oc apply -f 00-namespace.yml
 ```
+2. Create RBAC role
+3. Create PV and PVC to store backup files
+4. Create the cronjob
 #
